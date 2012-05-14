@@ -1,0 +1,10 @@
+add_library(components
+	Enemy.cpp
+	Expires.cpp
+	Health.cpp
+	Player.cpp
+	SpatialForm.cpp
+	Transform.cpp
+	Velocity.cpp
+	Weapon.cpp
+)
