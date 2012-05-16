@@ -1,5 +1,6 @@
 set(STARWARRIOR_INC ${CMAKE_SOURCE_DIR}/include)
 include_directories(
+	${SDL_INCLUDE_DIR}
 	${STARWARRIOR_INC}
 	${STARWARRIOR_INC}/components
 	${STARWARRIOR_INC}/spatials
@@ -15,4 +16,4 @@ add_executable(starwarrior
 	StarWarrior.cpp
 )
 
-target_link_libraries(starwarrior components spatials systems)
+target_link_libraries(starwarrior components spatials systems ${SDL_LIBRARY})
