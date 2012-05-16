@@ -9,7 +9,7 @@ namespace StarWarrior {
 
 class SpatialForm : public hecate::Component {
 	SpatialForm(std::string spatialFormFile);
-	std::string getSpatialFormFile();
+	std::string getSpatialFormFile() const;
 
 private:
 	std::string spatialFormFile;

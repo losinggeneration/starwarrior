@@ -12,16 +12,16 @@ public:
 	Transform(float x, float y, float rotation);
 	void addX(float x);
 	void addY(float y);
-	float getX();
+	float getX() const;
 	void setX(float x);
-	float getY();
+	float getY() const;
 	void setY(float y);
 	void setLocation(float x, float y);
-	float getRotation();
+	float getRotation() const;
 	void setRotation(float rotation);
 	void addRotation(float angle);
-	float getRotationAsRadians();
-	float getDistanceTo(const Transform &t);
+	float getRotationAsRadians() const;
+	float getDistanceTo(const Transform &t) const;
 
 private:
 	void init(float x, float y);

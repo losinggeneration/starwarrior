@@ -6,7 +6,7 @@ Expires::Expires(int lifeTime) {
 	this->lifeTime = lifeTime;
 }
 
-int Expires::getLifeTime() {
+int Expires::getLifeTime() const {
 	return lifeTime;
 }
 
@@ -18,7 +18,7 @@ void Expires::reduceLifeTime(int lifeTime) {
 	this->lifeTime -= lifeTime;
 }
 
-bool Expires::isExpired() {
+bool Expires::isExpired() const {
 	return lifeTime <= 0;
 }
 

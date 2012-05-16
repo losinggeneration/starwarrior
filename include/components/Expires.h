@@ -8,10 +8,10 @@ namespace StarWarrior {
 class Expires : public hecate::Component {
 public:
 	Expires(int lifeTime);
-	int getLifeTime();
+	int getLifeTime() const;
 	void setLifeTime(int lifeTime);
 	void reduceLifeTime(int lifeTime);
-	bool isExpired();
+	bool isExpired() const;
 
 private:
 	int lifeTime;

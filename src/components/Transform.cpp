@@ -1,6 +1,9 @@
 #include "components/Transform.h"
+#include "utils/utils.h"
 
 namespace StarWarrior {
+
+using namespace Utils;
 
 Transform::Transform() {
 }
@@ -22,7 +25,7 @@ void Transform::addY(float y) {
 	this->y += y;
 }
 
-float Transform::getX() {
+float Transform::getX() const {
 	return x;
 }
 
@@ -30,7 +33,7 @@ void Transform::setX(float x) {
 	this->x = x;
 }
 
-float Transform::getY() {
+float Transform::getY() const {
 	return y;
 }
 
@@ -43,7 +46,7 @@ void Transform::setLocation(float x, float y) {
 	this->y = y;
 }
 
-float Transform::getRotation() {
+float Transform::getRotation() const {
 	return rotation;
 }
 
@@ -52,15 +55,15 @@ void Transform::setRotation(float rotation) {
 }
 
 void Transform::addRotation(float angle) {
-// 	rotation = (rotation + angle) % 360;
+	rotation = (int)(rotation + angle) % 360;
 }
 
-float Transform::getRotationAsRadians() {
-// 	return (float) Math.toRadians(rotation);
+float Transform::getRotationAsRadians() const {
+	return (float) toRadians(rotation);
 }
 
-float Transform::getDistanceTo(const Transform &t) {
-// 	return Utils.distance(t.getX(), t.getY(), x, y);
+float Transform::getDistanceTo(const Transform &t) const {
+	return distance(t.getX(), t.getY(), x, y);
 }
 
 void Transform::init(float x, float y) {

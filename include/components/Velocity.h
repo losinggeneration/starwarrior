@@ -10,12 +10,12 @@ public:
 	Velocity();
 	Velocity(float vector);
 	Velocity(float velocity, float angle);
-	float getVelocity();
+	float getVelocity() const;
 	void setVelocity(float velocity);
 	void setAngle(float angle);
-	float getAngle();
+	float getAngle() const;
 	void addAngle(float a);
-	float getAngleAsRadians();
+	float getAngleAsRadians() const;
 
 private:
 	float velocity;

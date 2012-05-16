@@ -1,6 +1,9 @@
 #include "components/Velocity.h"
+#include "utils/utils.h"
 
 namespace StarWarrior {
+
+using namespace Utils;
 
 Velocity::Velocity() {
 }
@@ -14,7 +17,7 @@ Velocity::Velocity(float velocity, float angle) {
 	this->angle = angle;
 }
 
-float Velocity::getVelocity() {
+float Velocity::getVelocity() const {
 	return velocity;
 }
 
@@ -26,16 +29,16 @@ void Velocity::setAngle(float angle) {
 	this->angle = angle;
 }
 
-float Velocity::getAngle() {
+float Velocity::getAngle() const {
 	return angle;
 }
 
 void Velocity::addAngle(float a) {
-// 	angle = (angle + a) % 360;
+	angle = (int)(angle + a) % 360;
 }
 
-float Velocity::getAngleAsRadians() {
-// 	return (float) Math.toRadians(angle);
+float Velocity::getAngleAsRadians() const {
+	return (float) toRadians(angle);
 }
 
 

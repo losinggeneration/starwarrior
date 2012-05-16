@@ -1,21 +1,23 @@
 #include "components/Health.h"
 
+#include <cmath>
+
 namespace StarWarrior {
 
 Health::Health(float health) {
 	this->health = this->maximumHealth = health;
 }
 
-float Health::getHealth() {
+float Health::getHealth() const {
 	return health;
 }
 
-float Health::getMaximumHealth() {
+float Health::getMaximumHealth() const {
 	return maximumHealth;
 }
 
-int Health::getHealthPercentage() {
-// 	return Math.round(health / maximumHealth * 100f);
+int Health::getHealthPercentage() const {
+	return round(health / maximumHealth * 100.0f);
 }
 
 void Health::addDamage(int damage) {
@@ -24,7 +26,7 @@ void Health::addDamage(int damage) {
 		health = 0;
 }
 
-bool Health::isAlive() {
+bool Health::isAlive() const {
 	return health > 0;
 }
 

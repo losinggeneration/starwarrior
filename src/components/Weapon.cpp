@@ -6,7 +6,7 @@ void Weapon::setShotAt(long shotAt) {
 	this->shotAt = shotAt;
 }
 
-long Weapon::getShotAt() {
+long Weapon::getShotAt() const {
 	return shotAt;
 }
 
