@@ -4,7 +4,7 @@
 #include "SDL.h"
 #include "spatials/Spatial.h"
 
-namespace SpaceWarrior {
+namespace StarWarrior {
 
 class Transform;
 

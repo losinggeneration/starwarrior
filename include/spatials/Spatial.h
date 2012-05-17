@@ -5,7 +5,7 @@
 #include "hecate/Entity.h"
 #include "hecate/World.h"
 
-namespace SpaceWarrior {
+namespace StarWarrior {
 
 class Spatial {
 public:

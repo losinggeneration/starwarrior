@@ -1,6 +1,6 @@
 #include "spatials/Spatial.h"
 
-namespace SpaceWarrior {
+namespace StarWarrior {
 
 using namespace hecate;
 

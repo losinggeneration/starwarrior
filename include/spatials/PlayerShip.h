@@ -1,11 +1,11 @@
 #ifndef SPACEWARRIOR_PLAYERSHIP_H
 #define SPACEWARRIOR_PLAYERSHIP_H
 
-#include "spactials/Spactal.h"
+#include "spatials/Spatial.h"
 
-namespace SpaceWarrior {
+namespace StarWarrior {
 
-class PlayerShip : public Spactial {
+class PlayerShip : public Spatial {
 
 };
 

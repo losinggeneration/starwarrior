@@ -1,11 +1,11 @@
 #ifndef SPACEWARRIOR_EXPLOSION_H
 #define SPACEWARRIOR_EXPLOSION_H
 
-#include "spactials/Spactal.h"
+#include "spatials/Spatial.h"
 
-namespace SpaceWarrior {
+namespace StarWarrior {
 
-class Explosion : public Spactial {
+class Explosion : public Spatial {
 
 };
 
