@@ -1,12 +1,22 @@
 #ifndef SPACEWARRIOR_PLAYERSHIP_H
 #define SPACEWARRIOR_PLAYERSHIP_H
 
+#include "SDL.h"
 #include "spatials/Spatial.h"
 
 namespace StarWarrior {
 
-class PlayerShip : public Spatial {
+class Transform;
 
+class PlayerShip : public Spatial {
+	PlayerShip(hecate::World *world, hecate::Entity *owner);
+	~PlayerShip();
+	void initialize();
+	void render(SDL_Surface *s);
+
+private:
+	Transform *transform;
+	SDL_Surface *ship;
 };
 
 }
