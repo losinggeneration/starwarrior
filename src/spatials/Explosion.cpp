@@ -14,7 +14,7 @@ using namespace hecate;
 Explosion::Explosion(World *w, Entity *e, int r) : Spatial(w, e), radius(r) {
 }
 
-void Explosion::initalize() {
+void Explosion::initialize() {
 	ComponentMapper<Transform> transformMapper(transform, world);
 	transform = transformMapper.get(*owner);
 

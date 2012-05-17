@@ -16,7 +16,7 @@ EnemyShip::EnemyShip(World *w, Entity *o) : Spatial(w, o) {
 EnemyShip::~EnemyShip() {
 }
 
-void EnemyShip::initalize() {
+void EnemyShip::initialize() {
 	ComponentMapper<Transform> transformMapper(transform, world);
 	Sint16 x[3] = {0, 20, 10}, y[3] = {20,20,0};
 

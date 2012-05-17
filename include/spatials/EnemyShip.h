@@ -11,7 +11,7 @@ class Transform;
 class EnemyShip : public Spatial {
 	EnemyShip(hecate::World *world, hecate::Entity *owner);
 	~EnemyShip();
-	void initalize();
+	void initialize();
 	void render(SDL_Surface *s);
 
 private:

@@ -12,7 +12,7 @@ class Transform;
 class Explosion : public Spatial {
 public:
 	Explosion(hecate::World *world, hecate::Entity *owner, int radius);
-	void initalize();
+	void initialize();
 	void render(SDL_Surface *s);
 
 private:
