@@ -14,6 +14,7 @@ EnemyShip::EnemyShip(World *w, Entity *o) : Spatial(w, o) {
 }
 
 EnemyShip::~EnemyShip() {
+	SDL_FreeSurface(ship);
 }
 
 void EnemyShip::initialize() {
