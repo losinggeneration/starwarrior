@@ -9,6 +9,7 @@ namespace StarWarrior {
 class Transform;
 
 class EnemyShip : public Spatial {
+public:
 	EnemyShip(hecate::World *world, hecate::Entity *owner);
 	~EnemyShip();
 	void initialize();
