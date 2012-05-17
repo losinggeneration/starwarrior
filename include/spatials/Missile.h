@@ -1,5 +1,5 @@
-#ifndef SPACEWARRIOR_MISSILE_H
-#define SPACEWARRIOR_MISSILE_H
+#ifndef STARWARRIOR_MISSILE_H
+#define STARWARRIOR_MISSILE_H
 
 #include "SDL.h"
 #include "spatials/Spatial.h"

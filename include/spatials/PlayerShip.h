@@ -1,5 +1,5 @@
-#ifndef SPACEWARRIOR_PLAYERSHIP_H
-#define SPACEWARRIOR_PLAYERSHIP_H
+#ifndef STARWARRIOR_PLAYERSHIP_H
+#define STARWARRIOR_PLAYERSHIP_H
 
 #include "SDL.h"
 #include "spatials/Spatial.h"

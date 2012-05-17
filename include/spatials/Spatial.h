@@ -1,5 +1,5 @@
-#ifndef SPACEWARRIOR_SPATIAL_H
-#define SPACEWARRIOR_SPATIAL_H
+#ifndef STARWARRIOR_SPATIAL_H
+#define STARWARRIOR_SPATIAL_H
 
 #include "SDL.h"
 #include "hecate/Entity.h"

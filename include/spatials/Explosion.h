@@ -1,5 +1,5 @@
-#ifndef SPACEWARRIOR_EXPLOSION_H
-#define SPACEWARRIOR_EXPLOSION_H
+#ifndef STARWARRIOR_EXPLOSION_H
+#define STARWARRIOR_EXPLOSION_H
 
 #include "SDL.h"
 #include "spatials/Spatial.h"
