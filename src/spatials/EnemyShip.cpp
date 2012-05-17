@@ -1,8 +1,8 @@
 #include "spatials/EnemyShip.h"
+
 #include "components/Transform.h"
 
 #include "hecate/ComponentMapper.h"
-#include "hecate/World.h"
 
 #include "SDL_gfxPrimitives.h"
 
@@ -17,7 +17,7 @@ EnemyShip::~EnemyShip() {
 }
 
 void EnemyShip::initalize() {
-	ComponentMapper<Transform> transformMapper(transform, this->world);
+	ComponentMapper<Transform> transformMapper(transform, world);
 	Sint16 x[3] = {0, 20, 10}, y[3] = {20,20,0};
 
 	transform = transformMapper.get(*owner);
