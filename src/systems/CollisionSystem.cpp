@@ -4,6 +4,8 @@
 #include "components/Transform.h"
 #include "components/Velocity.h"
 
+#include "EntityFactory.h"
+
 #include "hecate/Entity.h"
 #include "hecate/GroupManager.h"
 
@@ -37,7 +39,7 @@ void CollisionSystem::processEntities(std::set<hecate::Entity *> entities) {
 
 				if(collisionExists(bullet, ship)) {
 					Transform *tb = transformMapper->get(*bullet);
-// 					EntityFactory.createBulletExplosion(world, tb->getX(), tb->getY())->refresh();
+					EntityFactory::createBulletExplosion(world, tb->getX(), tb->getY())->refresh();
 					world->deleteEntity(bullet);
 
 					Health *health = healthMapper->get(*ship);
@@ -46,7 +48,7 @@ void CollisionSystem::processEntities(std::set<hecate::Entity *> entities) {
 					if(!health->isAlive()) {
 						Transform *ts = transformMapper->get(*ship);
 
-// 						EntityFactory.createShipExplosion(world, ts->getX(), ts->getY())->refresh();
+						EntityFactory::createShipExplosion(world, ts->getX(), ts->getY())->refresh();
 
 						world->deleteEntity(ship);
 						//  break from the inner loop
