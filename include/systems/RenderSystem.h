@@ -12,7 +12,7 @@ class Spatial;
 class SpatialForm;
 class Transform;
 
-class RenderSystem : hecate::EntityProcessingSystem {
+class RenderSystem : public hecate::EntityProcessingSystem {
 public:
 	RenderSystem(SDL_Surface *screen, int width, int height);
 	void initialize();

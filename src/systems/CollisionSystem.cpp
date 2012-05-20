@@ -22,7 +22,7 @@ void CollisionSystem::initialize() {
 	healthMapper = new ComponentMapper<Health>(Health(), world);
 }
 
-void CollisionSystem::processEntities(std::set<hecate::Entity *> entities) {
+void CollisionSystem::processEntities(const entitySet_t &entities) {
 	entitySet_t bullets = world->getGroupManager()->getEntities("BULLETS");
 	entitySet_t ships = world->getGroupManager()->getEntities("SHIPS");
 

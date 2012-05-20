@@ -15,7 +15,7 @@ public:
 	void initialize();
 
 protected:
-	void processEntities(std::set<hecate::Entity*> entities);
+	void processEntities(const hecate::entitySet_t &entities);
 
 private:
 	hecate::ComponentMapper<Transform> transformMapper;

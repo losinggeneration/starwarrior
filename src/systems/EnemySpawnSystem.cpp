@@ -31,7 +31,7 @@ void EnemySpawnSystem::initialize() {
 
 }
 
-void EnemySpawnSystem::processEntities(std::set<Entity*> entities) {
+void EnemySpawnSystem::processEntities(const entitySet_t &entities) {
 	Entity *e = EntityFactory::createEnemyShip(world);
 
 // 	e->getComponent(Transform())->setLocation(r.nextInt(width), r.nextInt(400)+50);
