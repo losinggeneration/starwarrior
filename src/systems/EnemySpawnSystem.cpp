@@ -1,1 +1,45 @@
 #include "systems/EnemySpawnSystem.h"
+
+#include "EntityFactory.h"
+#include "components/Enemy.h"
+#include "components/Transform.h"
+#include "components/Velocity.h"
+#include "components/Weapon.h"
+
+#include "hecate/Entity.h"
+
+using namespace hecate;
+
+namespace StarWarrior {
+
+EnemySpawnSystem::EnemySpawnSystem(int interval, int width) : IntervalEntitySystem(interval),
+transformMapper(Transform(), world), weaponMapper(Weapon(), world) {
+	Enemy e;
+	Transform t;
+	Velocity v;
+	componentList_t l;
+
+	l.push_back(&t);
+	l.push_back(&e);
+	l.push_back(&v);
+	setupTypes(l);
+
+	this->width = width;
+}
+
+void EnemySpawnSystem::initialize() {
+
+}
+
+void EnemySpawnSystem::processEntities(std::set<Entity*> entities) {
+	Entity *e = EntityFactory::createEnemyShip(world);
+
+// 	e->getComponent(Transform())->setLocation(r.nextInt(width), r.nextInt(400)+50);
+	e->getComponent(Velocity())->setVelocity(0.05f);
+// 	e->getComponent(Velocity)->setAngle(r.nextBoolean() ? 0 : 180);
+
+	e->refresh();
+
+}
+
+}

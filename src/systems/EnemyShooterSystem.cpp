@@ -13,19 +13,20 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-EnemyShooterSystem::EnemyShooterSystem() {
-	Enemy *e;
-	Transform *t;
-	Weapon *w;
-	componentSet_t s;
-	s.insert(e);
-	s.insert(w);
-	setupRequiredTypes(e, s);
+EnemyShooterSystem::EnemyShooterSystem() :
+transformMapper(Transform(), world), weaponMapper(Weapon(), world) {
+	Enemy e;
+	Transform t;
+	Weapon w;
+	componentList_t l;
+
+	l.push_back(&e);
+	l.push_back(&w);
+
+	setupRequiredTypes(&t, l);
 }
 
 void EnemyShooterSystem::initialize() {
-	weaponMapper = new ComponentMapper<Weapon>(Weapon(), world);
-	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 }
 
 void EnemyShooterSystem::begin() {
@@ -33,21 +34,19 @@ void EnemyShooterSystem::begin() {
 }
 
 void EnemyShooterSystem::process(Entity *e) {
-	Weapon *weapon = weaponMapper->get(*e);
+	Weapon *weapon = weaponMapper.get(*e);
 
 	if (weapon->getShotAt() + 2000 < now) {
-		Transform *transform = transformMapper->get(*e);
+		Transform *transform = transformMapper.get(*e);
 
 		Entity *missile = EntityFactory::createMissile(world);
 		missile->getComponent<Transform>(Transform())->setLocation(transform->getX(), transform->getY() + 20);
-// 		missile->getComponent(Velocity.class).setVelocity(-0.5f);
-// 		missile->getComponent(Velocity.class).setAngle(270);
-		missile->getComponent<Velocity>(Velocity());
+		missile->getComponent<Velocity>(Velocity())->setVelocity(-0.5f);
+		missile->getComponent<Velocity>(Velocity())->setAngle(270.0f);
 		missile->refresh();
 
 		weapon->setShotAt(now);
 	}
-
 }
 
 }
