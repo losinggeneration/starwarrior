@@ -2,6 +2,7 @@ set(STARWARRIOR_INC ${CMAKE_SOURCE_DIR}/include)
 include_directories(
 	${SDL_INCLUDE_DIR}
 	${SDLGFX_INCLUDE_DIR}
+	${SDLTTF_INCLUDE_DIR}
 	${HECATE_INCLUDE_DIR}
 	${STARWARRIOR_INC}
 	${STARWARRIOR_INC}/components
@@ -19,4 +20,4 @@ add_executable(starwarrior
 	StarWarrior.cpp
 )
 
-target_link_libraries(starwarrior components spatials systems utils ${SDL_LIBRARY} ${SDLGFX_LIBRARY} ${HECATE_LIBRARY})
+target_link_libraries(starwarrior components spatials systems utils ${SDL_LIBRARY} ${SDLGFX_LIBRARY} ${SDLTTF_LIBRARY} ${HECATE_LIBRARY})
