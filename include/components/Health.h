@@ -7,6 +7,7 @@ namespace StarWarrior {
 
 class Health : public hecate::Component {
 public:
+	Health();
 	Health(float health);
 	float getHealth() const;
 	float getMaximumHealth() const;

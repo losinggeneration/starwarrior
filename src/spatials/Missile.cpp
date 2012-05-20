@@ -14,7 +14,7 @@ Missile::Missile(World *w, Entity *e) : Spatial(w, e) {
 }
 
 void Missile::initialize() {
-	ComponentMapper<Transform> transformMapper(transform, world);
+	ComponentMapper<Transform> transformMapper(Transform(), world);
 	transform = transformMapper.get(*owner);
 }
 

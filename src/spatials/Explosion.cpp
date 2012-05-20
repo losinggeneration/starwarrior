@@ -15,10 +15,10 @@ Explosion::Explosion(World *w, Entity *e, int r) : Spatial(w, e), radius(r) {
 }
 
 void Explosion::initialize() {
-	ComponentMapper<Transform> transformMapper(transform, world);
+	ComponentMapper<Transform> transformMapper(Transform(), world);
 	transform = transformMapper.get(*owner);
 
-	ComponentMapper<Expires> expiresMapper(expires, world);
+	ComponentMapper<Expires> expiresMapper(Expires(), world);
 	expires = expiresMapper.get(*owner);
 	initialLifeTime = expires->getLifeTime();
 

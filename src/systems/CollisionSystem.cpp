@@ -17,13 +17,9 @@ CollisionSystem::CollisionSystem() {
 }
 
 void CollisionSystem::initialize() {
-	Transform t;
-	Velocity v;
-	Health h(100);
-
-	transformMapper = new ComponentMapper<Transform>(&t, world);
-	velocityMapper = new ComponentMapper<Velocity>(&v, world);
-	healthMapper = new ComponentMapper<Health>(&h, world);
+	transformMapper = new ComponentMapper<Transform>(Transform(), world);
+	velocityMapper = new ComponentMapper<Velocity>(Velocity(), world);
+	healthMapper = new ComponentMapper<Health>(Health(), world);
 }
 
 void CollisionSystem::processEntities(std::set<hecate::Entity *> entities) {

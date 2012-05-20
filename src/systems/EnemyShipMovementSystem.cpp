@@ -6,8 +6,8 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-EnemyShipMovementSystem::EnemyShipMovementSystem(/*GameContainer container*/) :
-EntityProcessingSystem(t, std::set<Component*>()){
+EnemyShipMovementSystem::EnemyShipMovementSystem(/*GameContainer container*/) {
+// 	setupRequiredTypes();
 }
 
 void EnemyShipMovementSystem::initialize() {

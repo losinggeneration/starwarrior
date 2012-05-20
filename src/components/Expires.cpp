@@ -2,6 +2,9 @@
 
 namespace StarWarrior {
 
+Expires::Expires() : lifeTime(100) {
+}
+
 Expires::Expires(int lifeTime) {
 	this->lifeTime = lifeTime;
 }

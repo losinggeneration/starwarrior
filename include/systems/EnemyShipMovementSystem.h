@@ -11,7 +11,7 @@ class Enemy;
 class Transform;
 class Velocity;
 
-class EnemyShipMovementSystem : public hecate::EntityProcessingSystem<> {
+class EnemyShipMovementSystem : public hecate::EntityProcessingSystem {
 public:
 	EnemyShipMovementSystem(/*GameContainer container*/);
 	void initialize();

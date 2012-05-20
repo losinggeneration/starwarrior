@@ -18,7 +18,7 @@ EnemyShip::~EnemyShip() {
 }
 
 void EnemyShip::initialize() {
-	ComponentMapper<Transform> transformMapper(transform, world);
+	ComponentMapper<Transform> transformMapper(Transform(), world);
 	Sint16 x[3] = {0, 20, 10}, y[3] = {0,0,20};
 
 	transform = transformMapper.get(*owner);
