@@ -6,6 +6,8 @@
 namespace StarWarrior {
 
 class Enemy : public hecate::Component {
+public:
+	Enemy();
 };
 
 }

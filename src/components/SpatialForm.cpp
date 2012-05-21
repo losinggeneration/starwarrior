@@ -3,6 +3,7 @@
 namespace StarWarrior {
 
 SpatialForm::SpatialForm(std::string spatialFormFile) {
+	setType(this);
 	this->spatialFormFile = spatialFormFile;
 }
 

@@ -3,9 +3,11 @@
 namespace StarWarrior {
 
 Expires::Expires() : lifeTime(100) {
+	setType(this);
 }
 
 Expires::Expires(int lifeTime) {
+	setType(this);
 	this->lifeTime = lifeTime;
 }
 

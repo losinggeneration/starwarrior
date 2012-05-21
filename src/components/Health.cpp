@@ -5,9 +5,11 @@
 namespace StarWarrior {
 
 Health::Health() : health(100), maximumHealth(100) {
+	setType(this);
 }
 
 Health::Health(float health) {
+	setType(this);
 	this->health = this->maximumHealth = health;
 }
 

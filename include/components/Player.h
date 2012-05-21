@@ -6,6 +6,8 @@
 namespace StarWarrior {
 
 class Player : public hecate::Component {
+public:
+    Player();
 };
 
 }

@@ -7,6 +7,7 @@ namespace StarWarrior {
 
 class Weapon : public hecate::Component {
 public:
+	Weapon();
 	void setShotAt(long shotAt);
 	long getShotAt() const;
 

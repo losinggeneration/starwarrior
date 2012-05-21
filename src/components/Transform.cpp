@@ -6,13 +6,16 @@ namespace StarWarrior {
 using namespace Utils;
 
 Transform::Transform() {
+	setType(this);
 }
 
 Transform::Transform(float x, float y) {
+	setType(this);
 	init(x, y);
 }
 
 Transform::Transform(float x, float y, float rotation) {
+	setType(this);
 	init(x, y);
 	this->rotation = rotation;
 }
