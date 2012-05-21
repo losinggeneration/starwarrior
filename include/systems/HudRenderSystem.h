@@ -15,7 +15,7 @@ private:
 	SDL_Surface *screen;
 	TTF_Font *font;
 	int height;
-	hecate::ComponentMapper<Health> healthMapper;
+	hecate::ComponentMapper<Health> *healthMapper;
 
 public:
 	HudRenderSystem(SDL_Surface *screen, int height, TTF_Font *font);

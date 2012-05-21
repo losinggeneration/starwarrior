@@ -15,7 +15,7 @@ private:
 	bool moveRight;
 	bool moveLeft;
 	bool shoot;
-	hecate::ComponentMapper<Transform> transformMapper;
+	hecate::ComponentMapper<Transform> *transformMapper;
 
 public:
 	PlayerShipControlSystem();

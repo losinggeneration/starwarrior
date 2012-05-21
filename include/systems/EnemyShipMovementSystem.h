@@ -20,8 +20,8 @@ protected:
 	void process(hecate::Entity *e);
 
 private:
-	hecate::ComponentMapper<Transform> transformMapper;
-	hecate::ComponentMapper<Velocity> velocityMapper;
+	hecate::ComponentMapper<Transform> *transformMapper;
+	hecate::ComponentMapper<Velocity> *velocityMapper;
 
 	Enemy *e;
 	Transform *t;

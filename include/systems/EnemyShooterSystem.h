@@ -27,8 +27,8 @@ protected:
 	void process(hecate::Entity *e);
 
 private:
-	hecate::ComponentMapper<Transform> transformMapper;
-	hecate::ComponentMapper<Weapon> weaponMapper;
+	hecate::ComponentMapper<Transform> *transformMapper;
+	hecate::ComponentMapper<Weapon> *weaponMapper;
 	Uint32 now;
 };
 

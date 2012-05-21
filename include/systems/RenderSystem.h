@@ -25,8 +25,8 @@ protected:
 private:
 	typedef std::map<int, Spatial*> spatialMap_t;
 	spatialMap_t spatials;
-	hecate::ComponentMapper<SpatialForm> spatialFormMapper;
-	hecate::ComponentMapper<Transform> transformMapper;
+	hecate::ComponentMapper<SpatialForm> *spatialFormMapper;
+	hecate::ComponentMapper<Transform> *transformMapper;
 	SDL_Surface *screen;
 
 	int width;

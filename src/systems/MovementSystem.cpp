@@ -9,8 +9,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-MovementSystem::MovementSystem() : transformMapper(Transform(), world),
-velocityMapper(Velocity(), world) {
+MovementSystem::MovementSystem() {
 	Transform t;
 	Velocity v;
 	componentList_t l;
@@ -20,14 +19,16 @@ velocityMapper(Velocity(), world) {
 }
 
 void MovementSystem::initialize() {
+	transformMapper = new ComponentMapper<Transform>(Transform(), world);
+	velocityMapper = new ComponentMapper<Velocity>(Velocity(), world);
 }
 
 void MovementSystem::process(Entity *e) {
-	Velocity *velocity = velocityMapper.get(*e);
+	Velocity *velocity = velocityMapper->get(*e);
 	float r = velocity->getAngleAsRadians();
 	float v = velocity->getVelocity();
 
-	Transform *transform = transformMapper.get(*e);
+	Transform *transform = transformMapper->get(*e);
 
 	float xn = transform->getX() + (cos(r) * v * world->getDelta());
 	float yn = transform->getY() + (sin(r) * v * world->getDelta());

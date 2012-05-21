@@ -23,8 +23,8 @@ protected:
 private:
 	SDL_Surface *screen;
 	TTF_Font *font;
-	hecate::ComponentMapper<Health> healthMapper;
-	hecate::ComponentMapper<Transform> transformMapper;
+	hecate::ComponentMapper<Health> *healthMapper;
+	hecate::ComponentMapper<Transform> *transformMapper;
 };
 
 }

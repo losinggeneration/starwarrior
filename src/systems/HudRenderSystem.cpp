@@ -9,8 +9,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-HudRenderSystem::HudRenderSystem(SDL_Surface *screen, int height, TTF_Font *font) :
-healthMapper(Health(), world) {
+HudRenderSystem::HudRenderSystem(SDL_Surface *screen, int height, TTF_Font *font) {
 	Health h;
 	Player p;
 	componentList_t l;
@@ -25,10 +24,11 @@ healthMapper(Health(), world) {
 }
 
 void HudRenderSystem::initialize() {
+	healthMapper = new ComponentMapper<Health>(Health(), world);
 }
 
 void HudRenderSystem::process(Entity *e) {
-	Health *health = healthMapper.get(*e);
+	Health *health = healthMapper->get(*e);
 	std::stringstream ss;
 	std::string text;
 	SDL_Color white = {255,255,255};

@@ -17,7 +17,7 @@ protected:
 	void process(hecate::Entity *e);
 
 private:
-	hecate::ComponentMapper<Expires> expiresMapper;
+	hecate::ComponentMapper<Expires> *expiresMapper;
 };
 
 }

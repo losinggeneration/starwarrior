@@ -11,8 +11,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-PlayerShipControlSystem::PlayerShipControlSystem() :
-transformMapper(Transform(), world) {
+PlayerShipControlSystem::PlayerShipControlSystem() {
 	Player p;
 	Transform t;
 	componentList_t l;
@@ -22,6 +21,7 @@ transformMapper(Transform(), world) {
 }
 
 void PlayerShipControlSystem::initialize() {
+	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 }
 
 void PlayerShipControlSystem::keyPressed(SDLKey key) {
@@ -47,7 +47,7 @@ void PlayerShipControlSystem::keyReleased(SDLKey key) {
 }
 
 void PlayerShipControlSystem::process(Entity *e) {
-	Transform *transform = transformMapper.get(*e);
+	Transform *transform = transformMapper->get(*e);
 
 	if (moveLeft) {
 		transform->addX(world->getDelta() * -0.3f);

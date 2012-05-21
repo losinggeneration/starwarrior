@@ -6,7 +6,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-ExpirationSystem::ExpirationSystem() : expiresMapper(Expires(), world) {
+ExpirationSystem::ExpirationSystem() {
 	Expires e;
 	componentList_t l;
 	l.push_back(&e);
@@ -14,10 +14,11 @@ ExpirationSystem::ExpirationSystem() : expiresMapper(Expires(), world) {
 }
 
 void ExpirationSystem::initialize() {
+	expiresMapper = new ComponentMapper<Expires>(Expires(), world);
 }
 
 void ExpirationSystem::process(Entity *e) {
-	Expires *expires = expiresMapper.get(*e);
+	Expires *expires = expiresMapper->get(*e);
 	expires->reduceLifeTime(world->getDelta());
 
 	if (expires->isExpired()) {

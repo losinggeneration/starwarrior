@@ -12,8 +12,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-EnemySpawnSystem::EnemySpawnSystem(int interval, int width) : IntervalEntitySystem(interval),
-transformMapper(Transform(), world), weaponMapper(Weapon(), world) {
+EnemySpawnSystem::EnemySpawnSystem(int interval, int width) : IntervalEntitySystem(interval) {
 	Enemy e;
 	Transform t;
 	Velocity v;
@@ -28,6 +27,8 @@ transformMapper(Transform(), world), weaponMapper(Weapon(), world) {
 }
 
 void EnemySpawnSystem::initialize() {
+	transformMapper = new ComponentMapper<Transform>(Transform(), world);
+	weaponMapper = new ComponentMapper<Weapon>(Weapon(), world);
 
 }
 

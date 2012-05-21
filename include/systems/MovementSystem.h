@@ -18,8 +18,8 @@ protected:
 	void process(hecate::Entity *e);
 
 private:
-	hecate::ComponentMapper<Velocity> velocityMapper;
-	hecate::ComponentMapper<Transform> transformMapper;
+	hecate::ComponentMapper<Velocity> *velocityMapper;
+	hecate::ComponentMapper<Transform> *transformMapper;
 };
 
 }

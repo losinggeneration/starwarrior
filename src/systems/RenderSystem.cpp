@@ -16,8 +16,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-RenderSystem::RenderSystem(SDL_Surface *screen, int width, int height) :
-spatialFormMapper(SpatialForm(""), world), transformMapper(Transform(), world) {
+RenderSystem::RenderSystem(SDL_Surface *screen, int width, int height) {
 	SpatialForm sf("");
 	Transform t;
 	componentList_t l;
@@ -31,12 +30,14 @@ spatialFormMapper(SpatialForm(""), world), transformMapper(Transform(), world) {
 }
 
 void RenderSystem::initialize() {
+	spatialFormMapper = new ComponentMapper<SpatialForm>(SpatialForm(""), world);
+	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 }
 
 void RenderSystem::process(Entity *e) {
 	spatialMap_t::iterator it = spatials.find(e->getId());
 	Spatial *spatial = NULL;
-	Transform *transform = transformMapper.get(*e);
+	Transform *transform = transformMapper->get(*e);
 
 	if(it != spatials.end()) {
 		spatial = it->second;
@@ -60,20 +61,21 @@ void RenderSystem::removed(Entity *e) {
 }
 
 Spatial *RenderSystem::createSpatial(Entity *e) {
-	SpatialForm *spatialForm = spatialFormMapper.get(*e);
+	SpatialForm *spatialForm = spatialFormMapper->get(*e);
 	std::string spatialFormFile = spatialForm->getSpatialFormFile();
 
 	if (strcasecmp("PlayerShip", spatialFormFile.c_str()) == 0) {
 		return new PlayerShip(world, e);
-	} else if (strcasecmp("Missile", spatialFormFile.c_str()) == 0) {
-		return new Missile(world, e);
-	} else if (strcasecmp("EnemyShip", spatialFormFile.c_str()) == 0) {
-		return new EnemyShip(world, e);
-	} else if (strcasecmp("BulletExplosion", spatialFormFile.c_str()) == 0) {
-		return new Explosion(world, e, 10);
-	} else if (strcasecmp("ShipExplosion", spatialFormFile.c_str()) == 0) {
-		return new Explosion(world, e, 30);
 	}
+// 	} else if (strcasecmp("Missile", spatialFormFile.c_str()) == 0) {
+// 		return new Missile(world, e);
+// 	} else if (strcasecmp("EnemyShip", spatialFormFile.c_str()) == 0) {
+// 		return new EnemyShip(world, e);
+// 	} else if (strcasecmp("BulletExplosion", spatialFormFile.c_str()) == 0) {
+// 		return new Explosion(world, e, 10);
+// 	} else if (strcasecmp("ShipExplosion", spatialFormFile.c_str()) == 0) {
+// 		return new Explosion(world, e, 30);
+// 	}
 
 	return NULL;
 }

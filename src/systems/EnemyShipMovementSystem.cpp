@@ -8,8 +8,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-EnemyShipMovementSystem::EnemyShipMovementSystem(int width) :
-transformMapper(Transform(), world), velocityMapper(Velocity(), world) {
+EnemyShipMovementSystem::EnemyShipMovementSystem(int width) {
 	Enemy e;
 	Transform t;
 	Velocity v;
@@ -23,11 +22,13 @@ transformMapper(Transform(), world), velocityMapper(Velocity(), world) {
 }
 
 void EnemyShipMovementSystem::initialize() {
+	transformMapper = new ComponentMapper<Transform>(Transform(), world);
+	velocityMapper = new ComponentMapper<Velocity>(Velocity(), world);
 }
 
 void EnemyShipMovementSystem::process(Entity *e) {
-	Transform *transform = transformMapper.get(*e);
-	Velocity *velocity = velocityMapper.get(*e);
+	Transform *transform = transformMapper->get(*e);
+	Velocity *velocity = velocityMapper->get(*e);
 	int width = 20;
 
 	if(transform->getX() > width || transform->getX() < 0) {

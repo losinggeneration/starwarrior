@@ -9,8 +9,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-HealthBarRenderSystem::HealthBarRenderSystem(SDL_Surface *screen, TTF_Font *font) :
-healthMapper(Health(), world), transformMapper(Transform(), world) {
+HealthBarRenderSystem::HealthBarRenderSystem(SDL_Surface *screen, TTF_Font *font) {
 	Health h;
 	Transform t;
 	componentList_t l;
@@ -24,11 +23,13 @@ healthMapper(Health(), world), transformMapper(Transform(), world) {
 }
 
 void HealthBarRenderSystem::initialize() {
+	healthMapper = new ComponentMapper<Health>(Health(), world);
+	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 }
 
 void HealthBarRenderSystem::process(Entity *e) {
-	Health *health = healthMapper.get(*e);
-	Transform *transform = transformMapper.get(*e);
+	Health *health = healthMapper->get(*e);
+	Transform *transform = transformMapper->get(*e);
 	std::string text;
 	SDL_Color white = {255, 255, 255};
 	SDL_Rect r;
