@@ -1,6 +1,8 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 #include "hecate/hecate.h"
+#include <cstdlib>
+#include <ctime>
 
 #include "EntityFactory.h"
 #include "components/Health.h"
@@ -47,6 +49,7 @@ void update(int delta);
 void render();
 
 int initialize() {
+	srand((unsigned)time(0));
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
 
@@ -72,13 +75,12 @@ int initialize() {
 }
 
 void initEnemyShips() {
-// 	Random r = new Random();
 	for (int i = 0; 10 > i; i++) {
 		Entity *e = EntityFactory::createEnemyShip(world);
 
-// 		e->getComponent(Transform())->setLocation(r.nextInt(STARWARRIOR_WIDTH), r.nextInt(400)+50);
+		e->getComponent(Transform())->setLocation(rand()%STARWARRIOR_WIDTH, rand()%400+50);
 		e->getComponent(Velocity())->setVelocity(0.05f);
-// 		e->getComponent(Velocity())->setAngle(r.nextBoolean() ? 0 : 180);
+		e->getComponent(Velocity())->setAngle((rand()%2) ? 0 : 180);
 
 		e->refresh();
 	}

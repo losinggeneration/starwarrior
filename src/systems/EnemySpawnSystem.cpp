@@ -8,6 +8,8 @@
 
 #include "hecate/Entity.h"
 
+#include <cstdlib>
+
 using namespace hecate;
 
 namespace StarWarrior {
@@ -35,12 +37,11 @@ void EnemySpawnSystem::initialize() {
 void EnemySpawnSystem::processEntities(const entitySet_t &entities) {
 	Entity *e = EntityFactory::createEnemyShip(world);
 
-// 	e->getComponent(Transform())->setLocation(r.nextInt(width), r.nextInt(400)+50);
+	e->getComponent(Transform())->setLocation(rand()%width, rand()%400+50);
 	e->getComponent(Velocity())->setVelocity(0.05f);
-// 	e->getComponent(Velocity)->setAngle(r.nextBoolean() ? 0 : 180);
+	e->getComponent(Velocity())->setAngle((rand()%2) ? 0 : 180);
 
 	e->refresh();
-
 }
 
 }
