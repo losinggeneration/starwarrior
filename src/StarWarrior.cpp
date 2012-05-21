@@ -1,3 +1,126 @@
+#include "SDL.h"
+#include "SDL_ttf.h"
+#include "hecate/hecate.h"
+
+#include "EntityFactory.h"
+#include "components/Health.h"
+#include "components/Player.h"
+#include "components/SpatialForm.h"
+#include "components/Transform.h"
+#include "components/Velocity.h"
+#include "systems/CollisionSystem.h"
+#include "systems/EnemyShipMovementSystem.h"
+#include "systems/EnemyShooterSystem.h"
+#include "systems/EnemySpawnSystem.h"
+#include "systems/ExpirationSystem.h"
+#include "systems/HealthBarRenderSystem.h"
+#include "systems/HudRenderSystem.h"
+#include "systems/MovementSystem.h"
+#include "systems/PlayerShipControlSystem.h"
+#include "systems/RenderSystem.h"
+
+#define STARWARRIOR_WIDTH 1024
+#define STARWARRIOR_HEIGHT 768
+#define STARWARRIOR_FONT "/usr/share/fonts/TTF/FreeSans.ttf"
+
+using namespace hecate;
+using namespace StarWarrior;
+
+SDL_Surface *screen;
+TTF_Font *font;
+World *world;
+EntitySystem *collisionSystem;
+EntitySystem *enemyShipMovementSystem;
+EntitySystem *enemyShooterSystem;
+EntitySystem *enemySpawnSystem;
+EntitySystem *expirationSystem;
+EntitySystem *healthBarRenderSystem;
+EntitySystem *hudRenderSystem;
+EntitySystem *movementSystem;
+EntitySystem *playerShipControlSystem;
+EntitySystem *renderSystem;
+
+int initialize();
+void initEnemyShips();
+void initPlayerShip();
+void update(int delta);
+void render();
+
+int initialize() {
+	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
+
+	screen = SDL_SetVideoMode(STARWARRIOR_WIDTH, STARWARRIOR_HEIGHT, 32, SDL_DOUBLEBUF);
+	font = TTF_OpenFont(STARWARRIOR_FONT, 12);
+
+	SystemManager *systemManager = world->getSystemManager();
+	collisionSystem = systemManager->setSystem(new CollisionSystem());
+	enemyShipMovementSystem = systemManager->setSystem(new EnemyShipMovementSystem(STARWARRIOR_WIDTH));
+	enemyShooterSystem = systemManager->setSystem(new EnemyShooterSystem());
+	enemySpawnSystem = systemManager->setSystem(new EnemySpawnSystem(500, STARWARRIOR_WIDTH));
+	expirationSystem = systemManager->setSystem(new ExpirationSystem());
+	healthBarRenderSystem = systemManager->setSystem(new HealthBarRenderSystem(screen, font));
+	hudRenderSystem = systemManager->setSystem(new HudRenderSystem(screen, STARWARRIOR_HEIGHT, font));
+	movementSystem = systemManager->setSystem(new MovementSystem());
+	playerShipControlSystem = systemManager->setSystem(new PlayerShipControlSystem());
+	renderSystem = systemManager->setSystem(new RenderSystem(screen, STARWARRIOR_WIDTH, STARWARRIOR_HEIGHT));
+
+	systemManager->initializeAll();
+
+	initPlayerShip();
+	initEnemyShips();
+}
+
+void initEnemyShips() {
+// 	Random r = new Random();
+	for (int i = 0; 10 > i; i++) {
+		Entity *e = EntityFactory::createEnemyShip(world);
+
+// 		e->getComponent(Transform())->setLocation(r.nextInt(STARWARRIOR_WIDTH), r.nextInt(400)+50);
+		e->getComponent(Velocity())->setVelocity(0.05f);
+// 		e->getComponent(Velocity())->setAngle(r.nextBoolean() ? 0 : 180);
+
+		e->refresh();
+	}
+}
+
+void initPlayerShip() {
+	Entity *e = world->createEntity();
+	e->setGroup("SHIPS");
+	e->addComponent(new Transform(STARWARRIOR_WIDTH / 2, STARWARRIOR_HEIGHT - 40));
+	e->addComponent(new SpatialForm("PlayerShip"));
+	e->addComponent(new Health(30));
+	e->addComponent(new Player());
+
+	e->refresh();
+}
+
+void update(int delta) {
+	world->loopStart();
+
+	world->setDelta(delta);
+
+	playerShipControlSystem->process();
+	movementSystem->process();
+	enemyShooterSystem->process();
+	enemyShipMovementSystem->process();
+	collisionSystem->process();
+	enemySpawnSystem->process();
+	expirationSystem->process();
+}
+
+void render() {
+	renderSystem->process();
+	healthBarRenderSystem->process();
+	hudRenderSystem->process();
+}
+
 int main(int argc, char *argv[]) {
+	world = new World();
+
+	initialize();
+
+	delete world;
+
 	return 0;
 }
