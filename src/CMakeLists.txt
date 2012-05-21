@@ -20,4 +20,4 @@ add_executable(starwarrior
 	StarWarrior.cpp
 )
 
-target_link_libraries(starwarrior components spatials systems utils ${SDL_LIBRARY} ${SDLGFX_LIBRARY} ${SDLTTF_LIBRARY} ${HECATE_LIBRARY})
+target_link_libraries(starwarrior systems components spatials utils ${SDL_LIBRARY} ${SDLGFX_LIBRARY} ${SDLTTF_LIBRARY} ${HECATE_LIBRARY})

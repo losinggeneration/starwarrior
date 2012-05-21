@@ -66,16 +66,15 @@ Spatial *RenderSystem::createSpatial(Entity *e) {
 
 	if (strcasecmp("PlayerShip", spatialFormFile.c_str()) == 0) {
 		return new PlayerShip(world, e);
+	} else if (strcasecmp("Missile", spatialFormFile.c_str()) == 0) {
+		return new Missile(world, e);
+	} else if (strcasecmp("EnemyShip", spatialFormFile.c_str()) == 0) {
+		return new EnemyShip(world, e);
+	} else if (strcasecmp("BulletExplosion", spatialFormFile.c_str()) == 0) {
+		return new Explosion(world, e, 10);
+	} else if (strcasecmp("ShipExplosion", spatialFormFile.c_str()) == 0) {
+		return new Explosion(world, e, 30);
 	}
-// 	} else if (strcasecmp("Missile", spatialFormFile.c_str()) == 0) {
-// 		return new Missile(world, e);
-// 	} else if (strcasecmp("EnemyShip", spatialFormFile.c_str()) == 0) {
-// 		return new EnemyShip(world, e);
-// 	} else if (strcasecmp("BulletExplosion", spatialFormFile.c_str()) == 0) {
-// 		return new Explosion(world, e, 10);
-// 	} else if (strcasecmp("ShipExplosion", spatialFormFile.c_str()) == 0) {
-// 		return new Explosion(world, e, 30);
-// 	}
 
 	return NULL;
 }

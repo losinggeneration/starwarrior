@@ -37,17 +37,17 @@ void EnemyShooterSystem::begin() {
 void EnemyShooterSystem::process(Entity *e) {
 	Weapon *weapon = weaponMapper->get(*e);
 
-// 	if (weapon->getShotAt() + 2000 < now) {
-// 		Transform *transform = transformMapper.get(*e);
-//
-// 		Entity *missile = EntityFactory::createMissile(world);
-// 		missile->getComponent<Transform>(Transform())->setLocation(transform->getX(), transform->getY() + 20);
-// 		missile->getComponent<Velocity>(Velocity())->setVelocity(-0.5f);
-// 		missile->getComponent<Velocity>(Velocity())->setAngle(270.0f);
-// 		missile->refresh();
-//
-// 		weapon->setShotAt(now);
-// 	}
+	if (weapon->getShotAt() + 2000 < now) {
+		Transform *transform = transformMapper->get(*e);
+
+		Entity *missile = EntityFactory::createMissile(world);
+		missile->getComponent<Transform>(Transform())->setLocation(transform->getX(), transform->getY() + 20);
+		missile->getComponent<Velocity>(Velocity())->setVelocity(-0.5f);
+		missile->getComponent<Velocity>(Velocity())->setAngle(270.0f);
+		missile->refresh();
+
+		weapon->setShotAt(now);
+	}
 }
 
 }
