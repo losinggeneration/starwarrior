@@ -3,6 +3,7 @@
 #include "hecate/hecate.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 #include "EntityFactory.h"
 #include "components/Health.h"
@@ -25,6 +26,7 @@
 #define STARWARRIOR_HEIGHT 768
 #define STARWARRIOR_FONT "/usr/share/fonts/TTF/FreeSans.ttf"
 
+using namespace std;
 using namespace hecate;
 using namespace StarWarrior;
 
@@ -42,13 +44,31 @@ EntitySystem *movementSystem;
 EntitySystem *playerShipControlSystem;
 EntitySystem *renderSystem;
 
-int initialize();
+void initialize();
 void initEnemyShips();
 void initPlayerShip();
 void update(int delta);
 void render();
+void gameLoop();
 
-int initialize() {
+Uint32 passTime() {
+	static Uint32 nextTime = 0;
+	Uint32 now = SDL_GetTicks();
+
+	if (nextTime <= now) {
+		nextTime = now + 30;
+
+		return 0;
+	}
+
+	return nextTime - now;
+}
+
+void delay() {
+	SDL_Delay(passTime());
+}
+
+void initialize() {
 	srand((unsigned)time(0));
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
@@ -117,10 +137,26 @@ void render() {
 	hudRenderSystem->process();
 }
 
+void gameLoop() {
+	bool quit = false;
+	Uint32 lastTime, thisTime;
+
+	while(!quit) {
+		update(thisTime-lastTime);
+		render();
+		lastTime = SDL_GetTicks();
+		delay();
+		thisTime = SDL_GetTicks();
+	}
+}
+
 int main(int argc, char *argv[]) {
 	world = new World();
 
 	initialize();
+
+	cout << "doing game loop" << endl;
+	gameLoop();
 
 	delete world;
 
