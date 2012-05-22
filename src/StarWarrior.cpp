@@ -3,7 +3,6 @@
 #include "hecate/hecate.h"
 #include <cstdlib>
 #include <ctime>
-#include <iostream>
 
 #include "EntityFactory.h"
 #include "components/Health.h"
@@ -50,6 +49,7 @@ void initPlayerShip();
 void update(int delta);
 void render();
 void gameLoop();
+void quit();
 
 Uint32 passTime() {
 	static Uint32 nextTime = 0;
@@ -145,6 +145,7 @@ void gameLoop() {
 	bool quit = false;
 	Uint32 lastTime, thisTime;
 	SDL_Event event;
+	PlayerShipControlSystem *pscs = dynamic_cast<PlayerShipControlSystem*>(controlSystem);
 
 	while(!quit) {
 		update(thisTime-lastTime);
@@ -153,7 +154,6 @@ void gameLoop() {
 		delay();
 		thisTime = SDL_GetTicks();
 		while(SDL_PollEvent(&event)) {
-			PlayerShipControlSystem *pscs = dynamic_cast<PlayerShipControlSystem*>(controlSystem);
 			switch(event.type) {
 				case SDL_KEYDOWN:
 					pscs->keyPressed(event.key.keysym.sym);
@@ -170,11 +170,18 @@ void gameLoop() {
 	}
 }
 
+void quit() {
+	SDL_FreeSurface(blank);
+	TTF_CloseFont(font);
+	SDL_Quit();
+}
+
 int main(int argc, char *argv[]) {
 	world = new World();
 
 	initialize();
 	gameLoop();
+	quit();
 
 	delete world;
 
