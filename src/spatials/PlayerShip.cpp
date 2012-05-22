@@ -25,7 +25,7 @@ void PlayerShip::initialize() {
 	// Should check for NULL after CreateRGBSurface
 	ship = SDL_CreateRGBSurface(SDL_SWSURFACE, 20, 20, 32, 0, 0, 0, 0);
 	// Should check for 0 (success) or -1 (failure) after filledPolygonRGBAMT
-	filledPolygonRGBA(ship, x, y, 3, 255, 0, 0, 0);
+	filledPolygonRGBA(ship, x, y, 3, 255, 0, 0, 255);
 }
 
 void PlayerShip::render(SDL_Surface *s) {

@@ -19,7 +19,7 @@ void Missile::initialize() {
 }
 
 void Missile::render(SDL_Surface *s) {
-	rectangleRGBA(s, transform->getX(), transform->getY(), transform->getX() + 2, transform->getY() + 6, 255, 255, 255, 0);
+	rectangleRGBA(s, transform->getX(), transform->getY(), transform->getX() + 2, transform->getY() + 6, 255, 255, 255, 255);
 }
 
 }
