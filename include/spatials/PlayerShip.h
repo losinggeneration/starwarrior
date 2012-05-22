@@ -11,7 +11,7 @@ class Transform;
 class PlayerShip : public Spatial {
 public:
 	PlayerShip(hecate::World *world, hecate::Entity *owner);
-	~PlayerShip();
+	virtual ~PlayerShip();
 	void initialize();
 	void render(SDL_Surface *s);
 

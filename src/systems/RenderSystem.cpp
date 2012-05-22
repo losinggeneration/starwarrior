@@ -29,6 +29,11 @@ RenderSystem::RenderSystem(SDL_Surface *screen, int width, int height) {
 	this->height = height;
 }
 
+RenderSystem::~RenderSystem() {
+	delete spatialFormMapper;
+	delete transformMapper;
+}
+
 void RenderSystem::initialize() {
 	spatialFormMapper = new ComponentMapper<SpatialForm>(SpatialForm(""), world);
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);
@@ -57,7 +62,12 @@ void RenderSystem::added(Entity *e) {
 }
 
 void RenderSystem::removed(Entity *e) {
-	spatials.erase(e->getId());
+	spatialMap_t::iterator it = spatials.find(e->getId());
+	if(it != spatials.end()) {
+		Spatial *spatial = it->second;
+		spatials.erase(it);
+		delete spatial;
+	}
 }
 
 Spatial *RenderSystem::createSpatial(Entity *e) {
