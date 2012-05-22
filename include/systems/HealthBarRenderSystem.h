@@ -15,10 +15,11 @@ class Transform;
 class HealthBarRenderSystem : public hecate::EntityProcessingSystem {
 public:
 	HealthBarRenderSystem(SDL_Surface *screen, TTF_Font *font);
-	void initialize();
+	virtual ~HealthBarRenderSystem();
+	virtual void initialize();
 
 protected:
-	void process(hecate::Entity *e);
+	virtual void process(hecate::Entity *e);
 
 private:
 	SDL_Surface *screen;

@@ -11,10 +11,11 @@ class Expires;
 class ExpirationSystem : public hecate::EntityProcessingSystem {
 public:
 	ExpirationSystem();
-	void initialize();
+	virtual ~ExpirationSystem();
+	virtual void initialize();
 
 protected:
-	void process(hecate::Entity *e);
+	virtual void process(hecate::Entity *e);
 
 private:
 	hecate::ComponentMapper<Expires> *expiresMapper;

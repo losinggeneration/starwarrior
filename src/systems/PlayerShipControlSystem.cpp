@@ -20,6 +20,10 @@ PlayerShipControlSystem::PlayerShipControlSystem() {
 	setupTypes(l);
 }
 
+PlayerShipControlSystem::~PlayerShipControlSystem() {
+	delete transformMapper;
+}
+
 void PlayerShipControlSystem::initialize() {
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 }

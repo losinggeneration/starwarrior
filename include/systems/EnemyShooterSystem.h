@@ -20,11 +20,12 @@ class Weapon;
 class EnemyShooterSystem : public hecate::EntityProcessingSystem {
 public:
 	EnemyShooterSystem();
-	void initialize();
+	virtual ~EnemyShooterSystem();
+	virtual void initialize();
 
 protected:
-	void begin();
-	void process(hecate::Entity *e);
+	virtual void begin();
+	virtual void process(hecate::Entity *e);
 
 private:
 	hecate::ComponentMapper<Transform> *transformMapper;

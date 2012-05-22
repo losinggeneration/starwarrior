@@ -13,6 +13,9 @@ ExpirationSystem::ExpirationSystem() {
 	setupTypes(l);
 }
 
+ExpirationSystem::~ExpirationSystem() {
+}
+
 void ExpirationSystem::initialize() {
 	expiresMapper = new ComponentMapper<Expires>(Expires(), world);
 }

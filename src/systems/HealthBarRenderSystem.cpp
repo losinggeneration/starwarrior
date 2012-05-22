@@ -22,6 +22,11 @@ HealthBarRenderSystem::HealthBarRenderSystem(SDL_Surface *screen, TTF_Font *font
 	this->font = font;
 }
 
+HealthBarRenderSystem::~HealthBarRenderSystem() {
+	delete healthMapper;
+	delete transformMapper;
+}
+
 void HealthBarRenderSystem::initialize() {
 	healthMapper = new ComponentMapper<Health>(Health(), world);
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);

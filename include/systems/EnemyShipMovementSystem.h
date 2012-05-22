@@ -14,10 +14,11 @@ class Velocity;
 class EnemyShipMovementSystem : public hecate::EntityProcessingSystem {
 public:
 	EnemyShipMovementSystem(int width);
-	void initialize();
+	virtual ~EnemyShipMovementSystem();
+	virtual void initialize();
 
 protected:
-	void process(hecate::Entity *e);
+	virtual void process(hecate::Entity *e);
 
 private:
 	hecate::ComponentMapper<Transform> *transformMapper;

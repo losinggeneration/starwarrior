@@ -15,12 +15,13 @@ class Transform;
 class RenderSystem : public hecate::EntityProcessingSystem {
 public:
 	RenderSystem(SDL_Surface *screen, int width, int height);
-	void initialize();
+	virtual ~RenderSystem();
+	virtual void initialize();
 
 protected:
-	void process(hecate::Entity *e);
-	void added(hecate::Entity *e);
-	void removed(hecate::Entity *e);
+	virtual void process(hecate::Entity *e);
+	virtual void added(hecate::Entity *e);
+	virtual void removed(hecate::Entity *e);
 
 private:
 	typedef std::map<int, Spatial*> spatialMap_t;

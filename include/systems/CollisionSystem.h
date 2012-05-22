@@ -13,11 +13,12 @@ class Velocity;
 class CollisionSystem : public hecate::EntitySystem {
 public:
 	CollisionSystem();
-	void initialize();
+	virtual ~CollisionSystem();
+	virtual void initialize();
 
 protected:
-	void processEntities(const hecate::entitySet_t &entities);
-	bool checkProcessing();
+	virtual void processEntities(const hecate::entitySet_t &entities);
+	virtual bool checkProcessing();
 
 private:
 	bool collisionExists(hecate::Entity *e1, hecate::Entity *e2);

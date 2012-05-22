@@ -20,6 +20,12 @@ CollisionSystem::CollisionSystem() {
 	setupTypes(l);
 }
 
+CollisionSystem::~CollisionSystem() {
+	delete healthMapper;
+	delete transformMapper;
+	delete velocityMapper;
+}
+
 void CollisionSystem::initialize() {
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 	velocityMapper = new ComponentMapper<Velocity>(Velocity(), world);

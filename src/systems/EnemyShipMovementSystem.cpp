@@ -21,6 +21,11 @@ EnemyShipMovementSystem::EnemyShipMovementSystem(int width) {
 	this->width = width;
 }
 
+EnemyShipMovementSystem::~EnemyShipMovementSystem() {
+	delete transformMapper;
+	delete velocityMapper;
+}
+
 void EnemyShipMovementSystem::initialize() {
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 	velocityMapper = new ComponentMapper<Velocity>(Velocity(), world);

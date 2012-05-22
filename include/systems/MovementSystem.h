@@ -12,10 +12,11 @@ class Velocity;
 class MovementSystem : public hecate::EntityProcessingSystem {
 public:
 	MovementSystem();
-	void initialize();
+	virtual ~MovementSystem();
+	virtual void initialize();
 
 protected:
-	void process(hecate::Entity *e);
+	virtual void process(hecate::Entity *e);
 
 private:
 	hecate::ComponentMapper<Velocity> *velocityMapper;

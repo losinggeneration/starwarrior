@@ -23,6 +23,10 @@ HudRenderSystem::HudRenderSystem(SDL_Surface *screen, int height, TTF_Font *font
 	this->height = height;
 }
 
+HudRenderSystem::~HudRenderSystem() {
+	delete healthMapper;
+}
+
 void HudRenderSystem::initialize() {
 	healthMapper = new ComponentMapper<Health>(Health(), world);
 }

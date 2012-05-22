@@ -28,6 +28,11 @@ EnemySpawnSystem::EnemySpawnSystem(int interval, int width) : IntervalEntitySyst
 	this->width = width;
 }
 
+EnemySpawnSystem::~EnemySpawnSystem() {
+	delete transformMapper;
+	delete weaponMapper;
+}
+
 void EnemySpawnSystem::initialize() {
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 	weaponMapper = new ComponentMapper<Weapon>(Weapon(), world);

@@ -18,6 +18,11 @@ MovementSystem::MovementSystem() {
 	setupTypes(l);
 }
 
+MovementSystem::~MovementSystem() {
+	delete transformMapper;
+	delete velocityMapper;
+}
+
 void MovementSystem::initialize() {
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 	velocityMapper = new ComponentMapper<Velocity>(Velocity(), world);

@@ -25,6 +25,11 @@ EnemyShooterSystem::EnemyShooterSystem() {
 	setupRequiredTypes(&t, l);
 }
 
+EnemyShooterSystem::~EnemyShooterSystem() {
+	delete transformMapper;
+	delete weaponMapper;
+}
+
 void EnemyShooterSystem::initialize() {
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 	weaponMapper = new ComponentMapper<Weapon>(Weapon(), world);
