@@ -14,6 +14,10 @@ namespace StarWarrior {
 using namespace hecate;
 
 CollisionSystem::CollisionSystem() {
+	Transform t;
+	componentList_t l;
+	l.push_back(&t);
+	setupTypes(l);
 }
 
 void CollisionSystem::initialize() {
