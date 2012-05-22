@@ -30,7 +30,7 @@ using namespace std;
 using namespace hecate;
 using namespace StarWarrior;
 
-SDL_Surface *screen;
+SDL_Surface *screen, *blank;
 TTF_Font *font;
 World *world;
 EntitySystem *collisionSystem;
@@ -41,7 +41,7 @@ EntitySystem *expirationSystem;
 EntitySystem *healthBarRenderSystem;
 EntitySystem *hudRenderSystem;
 EntitySystem *movementSystem;
-EntitySystem *playerShipControlSystem;
+EntitySystem *controlSystem;
 EntitySystem *renderSystem;
 
 void initialize();
@@ -73,7 +73,8 @@ void initialize() {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
 
-	screen = SDL_SetVideoMode(STARWARRIOR_WIDTH, STARWARRIOR_HEIGHT, 32, SDL_DOUBLEBUF);
+	screen = SDL_SetVideoMode(STARWARRIOR_WIDTH, STARWARRIOR_HEIGHT, 32, SDL_SWSURFACE);
+	blank = SDL_CreateRGBSurface(SDL_SWSURFACE, STARWARRIOR_WIDTH, STARWARRIOR_HEIGHT, 32, 0, 0, 0, 0);
 	font = TTF_OpenFont(STARWARRIOR_FONT, 12);
 
 	SystemManager *systemManager = world->getSystemManager();
@@ -85,7 +86,7 @@ void initialize() {
 	healthBarRenderSystem = systemManager->setSystem(new HealthBarRenderSystem(screen, font));
 	hudRenderSystem = systemManager->setSystem(new HudRenderSystem(screen, STARWARRIOR_HEIGHT, font));
 	movementSystem = systemManager->setSystem(new MovementSystem());
-	playerShipControlSystem = systemManager->setSystem(new PlayerShipControlSystem());
+	controlSystem = systemManager->setSystem(new PlayerShipControlSystem());
 	renderSystem = systemManager->setSystem(new RenderSystem(screen, STARWARRIOR_WIDTH, STARWARRIOR_HEIGHT));
 
 	systemManager->initializeAll();
@@ -122,7 +123,7 @@ void update(int delta) {
 
 	world->setDelta(delta);
 
-	playerShipControlSystem->process();
+	controlSystem->process();
 	movementSystem->process();
 	enemyShooterSystem->process();
 	enemyShipMovementSystem->process();
@@ -132,14 +133,18 @@ void update(int delta) {
 }
 
 void render() {
+	SDL_BlitSurface(blank, NULL, screen, NULL);
 	renderSystem->process();
 	healthBarRenderSystem->process();
 	hudRenderSystem->process();
+
+	SDL_Flip(screen);
 }
 
 void gameLoop() {
 	bool quit = false;
 	Uint32 lastTime, thisTime;
+	SDL_Event event;
 
 	while(!quit) {
 		update(thisTime-lastTime);
@@ -147,6 +152,21 @@ void gameLoop() {
 		lastTime = SDL_GetTicks();
 		delay();
 		thisTime = SDL_GetTicks();
+		while(SDL_PollEvent(&event)) {
+			PlayerShipControlSystem *pscs = dynamic_cast<PlayerShipControlSystem*>(controlSystem);
+			switch(event.type) {
+				case SDL_KEYDOWN:
+					pscs->keyPressed(event.key.keysym.sym);
+					break;
+				case SDL_KEYUP:
+					if(event.key.keysym.sym == SDLK_ESCAPE) {
+						quit = true;
+					}
+
+					pscs->keyReleased(event.key.keysym.sym);
+					break;
+			}
+		}
 	}
 }
 
@@ -154,8 +174,6 @@ int main(int argc, char *argv[]) {
 	world = new World();
 
 	initialize();
-
-	cout << "doing game loop" << endl;
 	gameLoop();
 
 	delete world;
