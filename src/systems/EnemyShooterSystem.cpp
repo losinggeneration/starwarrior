@@ -37,7 +37,7 @@ void EnemyShooterSystem::begin() {
 void EnemyShooterSystem::process(Entity *e) {
 	Weapon *weapon = weaponMapper->get(*e);
 
-	if (weapon->getShotAt() + 2000 < now) {
+	if (weapon && weapon->getShotAt() + 2000 < now) {
 		Transform *transform = transformMapper->get(*e);
 
 		Entity *missile = EntityFactory::createMissile(world);

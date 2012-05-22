@@ -25,15 +25,20 @@ void MovementSystem::initialize() {
 
 void MovementSystem::process(Entity *e) {
 	Velocity *velocity = velocityMapper->get(*e);
-	float r = velocity->getAngleAsRadians();
-	float v = velocity->getVelocity();
+	if(velocity) {
+		float r = velocity->getAngleAsRadians();
+		float v = velocity->getVelocity();
 
-	Transform *transform = transformMapper->get(*e);
 
-	float xn = transform->getX() + (cos(r) * v * world->getDelta());
-	float yn = transform->getY() + (sin(r) * v * world->getDelta());
+		Transform *transform = transformMapper->get(*e);
 
-	transform->setLocation(xn, yn);
+		if(transform) {
+			float xn = transform->getX() + (cos(r) * v * world->getDelta());
+			float yn = transform->getY() + (sin(r) * v * world->getDelta());
+
+			transform->setLocation(xn, yn);
+		}
+	}
 }
 
 }

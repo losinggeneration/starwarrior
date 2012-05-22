@@ -34,16 +34,18 @@ void HealthBarRenderSystem::process(Entity *e) {
 	SDL_Color white = {255, 255, 255};
 	SDL_Rect r;
 
-	std::stringstream ss;
-	ss << health->getHealthPercentage() << "%";
-	ss >> text;
+	if(health) {
+		std::stringstream ss;
+		ss << health->getHealthPercentage() << "%";
+		ss >> text;
 
-	SDL_Surface *rendered = TTF_RenderText_Solid(font, text.c_str(), white);
-	r.w = rendered->w;
-	r.h = rendered->h;
-	r.x = transform->getX() - 10;
-	r.y = transform->getY() - 30;
-	SDL_BlitSurface(screen, &r, rendered, NULL);
+		SDL_Surface *rendered = TTF_RenderText_Solid(font, text.c_str(), white);
+		r.w = rendered->w;
+		r.h = rendered->h;
+		r.x = transform->getX() - 10;
+		r.y = transform->getY() - 30;
+		SDL_BlitSurface(screen, &r, rendered, NULL);
+	}
 }
 
 }

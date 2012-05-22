@@ -31,7 +31,7 @@ void EnemyShipMovementSystem::process(Entity *e) {
 	Velocity *velocity = velocityMapper->get(*e);
 	int width = 20;
 
-	if(transform->getX() > width || transform->getX() < 0) {
+	if((transform->getX() > width || transform->getX() < 0) && velocity) {
 		velocity->addAngle(180);
 	}
 }

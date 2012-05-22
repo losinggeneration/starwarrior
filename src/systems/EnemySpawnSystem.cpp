@@ -31,17 +31,18 @@ EnemySpawnSystem::EnemySpawnSystem(int interval, int width) : IntervalEntitySyst
 void EnemySpawnSystem::initialize() {
 	transformMapper = new ComponentMapper<Transform>(Transform(), world);
 	weaponMapper = new ComponentMapper<Weapon>(Weapon(), world);
-
 }
 
 void EnemySpawnSystem::processEntities(const entitySet_t &entities) {
-	Entity *e = EntityFactory::createEnemyShip(world);
+	if(entities.size() < 20) {
+		Entity *e = EntityFactory::createEnemyShip(world);
 
-	e->getComponent(Transform())->setLocation(rand()%width, rand()%400+50);
-	e->getComponent(Velocity())->setVelocity(0.05f);
-	e->getComponent(Velocity())->setAngle((rand()%2) ? 0 : 180);
+		e->getComponent(Transform())->setLocation(rand()%width, rand()%400+50);
+		e->getComponent(Velocity())->setVelocity(0.05f);
+		e->getComponent(Velocity())->setAngle((rand()%2) ? 0 : 180);
 
-	e->refresh();
+		e->refresh();
+	}
 }
 
 }

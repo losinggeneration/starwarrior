@@ -34,16 +34,18 @@ void HudRenderSystem::process(Entity *e) {
 	SDL_Color white = {255,255,255};
 	SDL_Rect r;
 
-	ss << "Health: " << health->getHealthPercentage() << "%";
-	ss >> text;
+	if(health) {
+		ss << "Health: " << health->getHealthPercentage() << "%";
+		ss >> text;
 
-	SDL_Surface *render = TTF_RenderText_Solid(font, text.c_str(), white);
-	r.w = render->w;
-	r.h = render->h;
-	r.x = 20;
-	r.y = height - 40;
+		SDL_Surface *render = TTF_RenderText_Solid(font, text.c_str(), white);
+		r.w = render->w;
+		r.h = render->h;
+		r.x = 20;
+		r.y = height - 40;
 
-	SDL_BlitSurface(screen, &r, render, NULL);
+		SDL_BlitSurface(screen, &r, render, NULL);
+	}
 }
 
 }
