@@ -11,7 +11,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-PlayerShipControlSystem::PlayerShipControlSystem() {
+PlayerShipControlSystem::PlayerShipControlSystem() : moveLeft(false), moveRight(false), shoot(false) {
 	Player p;
 	Transform t;
 	componentList_t l;
