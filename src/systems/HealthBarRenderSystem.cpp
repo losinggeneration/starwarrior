@@ -50,6 +50,7 @@ void HealthBarRenderSystem::process(Entity *e) {
 		r.x = transform->getX() - 10;
 		r.y = transform->getY() - 30;
 		SDL_BlitSurface(screen, &r, rendered, NULL);
+		SDL_FreeSurface(rendered);
 	}
 }
 

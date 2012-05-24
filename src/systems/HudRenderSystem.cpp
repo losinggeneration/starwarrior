@@ -49,6 +49,7 @@ void HudRenderSystem::process(Entity *e) {
 		r.y = height - 40;
 
 		SDL_BlitSurface(screen, &r, render, NULL);
+		SDL_FreeSurface(render);
 	}
 }
 

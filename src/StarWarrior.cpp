@@ -173,6 +173,7 @@ void gameLoop() {
 void quit() {
 	SDL_FreeSurface(blank);
 	TTF_CloseFont(font);
+	TTF_Quit();
 	SDL_Quit();
 }
 
