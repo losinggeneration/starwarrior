@@ -26,6 +26,7 @@ EnemySpawnSystem::EnemySpawnSystem(int interval, int width) : IntervalEntitySyst
 	setupTypes(l);
 
 	this->width = width;
+	now = 0;
 }
 
 EnemySpawnSystem::~EnemySpawnSystem() {

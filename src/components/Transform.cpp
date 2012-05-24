@@ -5,11 +5,12 @@ namespace StarWarrior {
 
 using namespace Utils;
 
-Transform::Transform() {
+Transform::Transform() : rotation(0) {
 	setType(this);
+	init(0, 0);
 }
 
-Transform::Transform(float x, float y) {
+Transform::Transform(float x, float y) : rotation(0) {
 	setType(this);
 	init(x, y);
 }

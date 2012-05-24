@@ -5,11 +5,11 @@ namespace StarWarrior {
 
 using namespace Utils;
 
-Velocity::Velocity() {
+Velocity::Velocity() : velocity(0), angle(0) {
 	setType(this);
 }
 
-Velocity::Velocity(float vector) {
+Velocity::Velocity(float vector) : angle(0) {
 	setType(this);
 	this->velocity = vector;
 }

@@ -2,7 +2,7 @@
 
 namespace StarWarrior {
 
-Weapon::Weapon() {
+Weapon::Weapon() : shotAt(0) {
 	setType(this);
 }
 

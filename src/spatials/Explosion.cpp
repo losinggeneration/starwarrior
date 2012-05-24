@@ -11,7 +11,7 @@ namespace StarWarrior {
 
 using namespace hecate;
 
-Explosion::Explosion(World *w, Entity *e, int r) : Spatial(w, e), radius(r) {
+Explosion::Explosion(World *w, Entity *e, int r) : Spatial(w, e), radius(r), initialLifeTime(0) {
 }
 
 void Explosion::initialize() {

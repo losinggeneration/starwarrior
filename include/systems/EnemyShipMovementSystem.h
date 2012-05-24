@@ -7,7 +7,6 @@
 
 namespace StarWarrior {
 
-class Enemy;
 class Transform;
 class Velocity;
 
@@ -23,10 +22,6 @@ protected:
 private:
 	hecate::ComponentMapper<Transform> *transformMapper;
 	hecate::ComponentMapper<Velocity> *velocityMapper;
-
-	Enemy *e;
-	Transform *t;
-	Velocity *v;
 
 	int width;
 };

@@ -13,7 +13,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-EnemyShooterSystem::EnemyShooterSystem() {
+EnemyShooterSystem::EnemyShooterSystem() : now(0) {
 	Enemy e;
 	Transform t;
 	Weapon w;

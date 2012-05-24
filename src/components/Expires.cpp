@@ -2,7 +2,7 @@
 
 namespace StarWarrior {
 
-Expires::Expires() : lifeTime(100) {
+Expires::Expires() : lifeTime(0) {
 	setType(this);
 }
 
