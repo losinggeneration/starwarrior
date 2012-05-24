@@ -14,6 +14,7 @@ ExpirationSystem::ExpirationSystem() {
 }
 
 ExpirationSystem::~ExpirationSystem() {
+	delete expiresMapper;
 }
 
 void ExpirationSystem::initialize() {
