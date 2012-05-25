@@ -43,13 +43,16 @@ void HudRenderSystem::process(Entity *e) {
 		ss >> text;
 
 		SDL_Surface *render = TTF_RenderText_Solid(font, text.c_str(), white);
-		r.w = render->w;
-		r.h = render->h;
-		r.x = 20;
-		r.y = height - 40;
 
-		SDL_BlitSurface(screen, &r, render, NULL);
-		SDL_FreeSurface(render);
+		if(render != NULL) {
+			r.w = render->w;
+			r.h = render->h;
+			r.x = 20;
+			r.y = height - 40;
+
+			SDL_BlitSurface(render, NULL, screen, &r);
+			SDL_FreeSurface(render);
+		}
 	}
 }
 
