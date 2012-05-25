@@ -11,7 +11,7 @@ class Weapon;
 
 class EnemySpawnSystem : public hecate::IntervalEntitySystem {
 public:
-	EnemySpawnSystem(int interval, int width);
+	EnemySpawnSystem(unsigned int interval, int width);
 	virtual ~EnemySpawnSystem();
 	virtual void initialize();
 
@@ -21,7 +21,6 @@ protected:
 private:
 	hecate::ComponentMapper<Transform> *transformMapper;
 	hecate::ComponentMapper<Weapon> *weaponMapper;
-	long now;
 	int width;
 };
 

@@ -14,7 +14,7 @@ using namespace hecate;
 
 namespace StarWarrior {
 
-EnemySpawnSystem::EnemySpawnSystem(int interval, int width) : IntervalEntitySystem(interval) {
+EnemySpawnSystem::EnemySpawnSystem(unsigned int interval, int width) : IntervalEntitySystem(interval) {
 	Enemy e;
 	Transform t;
 	Velocity v;
@@ -26,7 +26,6 @@ EnemySpawnSystem::EnemySpawnSystem(int interval, int width) : IntervalEntitySyst
 	setupTypes(l);
 
 	this->width = width;
-	now = 0;
 }
 
 EnemySpawnSystem::~EnemySpawnSystem() {
@@ -40,7 +39,7 @@ void EnemySpawnSystem::initialize() {
 }
 
 void EnemySpawnSystem::processEntities(const entitySet_t &entities) {
-	if(entities.size() < 20) {
+	if(entities.size() < 75) {
 		Entity *e = EntityFactory::createEnemyShip(world);
 
 		e->getComponent(Transform())->setLocation(rand()%width, rand()%400+50);
