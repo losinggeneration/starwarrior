@@ -43,7 +43,7 @@ EntitySystem *movementSystem;
 EntitySystem *controlSystem;
 EntitySystem *renderSystem;
 
-void initialize();
+bool initialize();
 void initEnemyShips();
 void initPlayerShip();
 void update(int delta);
@@ -68,14 +68,34 @@ void delay() {
 	SDL_Delay(passTime());
 }
 
-void initialize() {
+bool initialize() {
 	srand((unsigned)time(0));
-	SDL_Init(SDL_INIT_EVERYTHING);
-	TTF_Init();
+
+	if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+		return false;
+	}
+
+	if(TTF_Init() < 0) {
+		return false;
+	}
 
 	screen = SDL_SetVideoMode(STARWARRIOR_WIDTH, STARWARRIOR_HEIGHT, 32, SDL_SWSURFACE);
+
+	if(screen == NULL) {
+		return false;
+	}
+
 	blank = SDL_CreateRGBSurface(SDL_SWSURFACE, STARWARRIOR_WIDTH, STARWARRIOR_HEIGHT, 32, 0, 0, 0, 0);
+
+	if(blank == NULL) {
+		return false;
+	}
+
 	font = TTF_OpenFont(STARWARRIOR_FONT, 12);
+
+	if(font == NULL) {
+		return false;
+	}
 
 	SystemManager *systemManager = world->getSystemManager();
 	collisionSystem = systemManager->setSystem(new CollisionSystem());
@@ -93,6 +113,8 @@ void initialize() {
 
 	initPlayerShip();
 	initEnemyShips();
+
+	return true;
 }
 
 void initEnemyShips() {
@@ -180,8 +202,10 @@ void quit() {
 int main(int argc, char *argv[]) {
 	world = new World();
 
-	initialize();
-	gameLoop();
+	if(initialize()) {
+		gameLoop();
+	}
+
 	quit();
 
 	delete world;
